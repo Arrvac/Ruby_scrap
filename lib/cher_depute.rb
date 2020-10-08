@@ -16,10 +16,10 @@ def get_last(x)
 	name = x.css('td[1]/a').text.delete_prefix("Mme ").delete_prefix("M. ").split.last
 end
 
-def first_page
+def depute
 	pages = Nokogiri::HTML(URI.open('http://www2.assemblee-nationale.fr/deputes/liste/tableau'))
-  tmp = pages.css('//table/tbody/tr')
+  	tmp = pages.css('//table/tbody/tr')
 	deputename = tmp[0..10].map { |x| { "first_name" => get_first(x), "last_name" => get_last(x), "email" => get_email(x) } }
 end
 
-pp first_page
+pp depute
